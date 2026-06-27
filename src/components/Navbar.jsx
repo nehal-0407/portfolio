@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react'
 const LINKS = [
   { id: 'about', label: 'About' },
   { id: 'skills', label: 'Skills' },
+  { id: 'publications', label: 'Publications' },
   { id: 'research', label: 'Research' },
-  { id: 'achievements', label: 'Achievements' },
-  { id: 'leadership', label: 'Leadership' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'conferences', label: 'Conferences' },
   { id: 'contact', label: 'Contact' },
 ]
 
@@ -29,31 +30,31 @@ export default function Navbar({ dark, setDark }) {
     <header
       className={`fixed top-[3px] left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-bg dark:bg-bg-dark border-b border-line dark:border-line-dark shadow-sm'
+          ? 'bg-bg/75 dark:bg-bg-dark/70 backdrop-blur-xl border-b border-line dark:border-line-dark shadow-sm'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
       <nav className="section-pad mx-auto flex max-w-6xl items-center justify-between py-4">
         <button
           onClick={() => handleNav('top')}
-          className="font-mono text-sm tracking-tight text-ink dark:text-ink-dark hover:text-accent dark:hover:text-accent-light transition-colors"
+          className="font-mono text-sm tracking-tight text-ink dark:text-ink-dark hover:text-accent dark:hover:text-accent-light transition-colors shrink-0"
         >
           N.ISLAM <span className="text-slate dark:text-slate-dark">/ ai-ml</span>
         </button>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-5 lg:gap-7 overflow-x-auto">
           {LINKS.map((l) => (
             <button
               key={l.id}
               onClick={() => handleNav(l.id)}
-              className="text-sm font-medium text-slate dark:text-slate-dark hover:text-ink dark:hover:text-ink-dark transition-colors"
+              className="whitespace-nowrap text-sm font-medium text-slate dark:text-slate-dark hover:text-ink dark:hover:text-ink-dark transition-colors"
             >
               {l.label}
             </button>
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 shrink-0">
           <button
             aria-label="Toggle dark mode"
             onClick={() => setDark(!dark)}
@@ -84,9 +85,9 @@ export default function Navbar({ dark, setDark }) {
       </nav>
 
       {open && (
-        <div className="md:hidden border-t border-line dark:border-line-dark bg-bg dark:bg-bg-dark">
+        <div className="md:hidden border-t border-line dark:border-line-dark bg-bg/95 dark:bg-bg-dark/95 backdrop-blur-xl">
           <div className="section-pad mx-auto flex max-w-6xl flex-col py-3">
-            {LINKS.map((l) => (
+            {[...LINKS, { id: 'awards', label: 'Awards' }, { id: 'leadership', label: 'Leadership' }].map((l) => (
               <button
                 key={l.id}
                 onClick={() => handleNav(l.id)}

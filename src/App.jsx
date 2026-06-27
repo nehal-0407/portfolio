@@ -5,8 +5,11 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
+import Publications from './components/Publications'
+import Research from './components/Research'
 import Projects from './components/Projects'
-import Achievements from './components/Achievements'
+import Conferences from './components/Conferences'
+import Awards from './components/Awards'
 import Leadership from './components/Leadership'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -32,8 +35,11 @@ export default function App() {
         <Hero />
         <About />
         <Skills />
+        <Publications />
+        <Research />
         <Projects />
-        <Achievements />
+        <Conferences />
+        <Awards />
         <Leadership />
         <Contact />
       </main>
