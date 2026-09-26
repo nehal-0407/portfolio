@@ -135,6 +135,18 @@ export const publications = [
       'Carried out Grad-CAM++ and other XAI-based interpretation.',
     ],
   },
+  {
+    id: 6,
+    title:
+      'A Federated EfficientNet-B0 Framework for Interpretable and Privacy-Preserving Medical Image Classification Across Distributed Institutions',
+    authorPosition: 'Second author',
+    status: 'accepted',
+    statusLabel: 'Accepted',
+    venue:
+      'IEEE International Conference on Signal Processing, Information, Communication and Systems (SPICSCON 2026), Bangladesh Army University of Engineering and Technology',
+    summary: 'Developed the deep learning pipeline.',
+    details: [],
+  },
 ]
 
 // Research threads that group the publications above. Each thread only restates
@@ -148,9 +160,9 @@ export const researchThreads = [
   },
   {
     title: 'Federated learning for medical imaging',
-    text: 'Training diagnostic models across separate data holders without pooling images, with explainability kept in the loop. Work covers breast cancer classification and melanoma detection.',
+    text: 'Training diagnostic models across separate data holders without pooling images, with explainability kept in the loop. Work covers breast cancer classification, melanoma detection, and medical image classification across distributed institutions.',
     methods: ['Federated learning', 'EfficientNet-B0', 'CNN-GRU-Attention', 'SHAP', 'LIME', 'Grad-CAM++'],
-    papers: [4, 5],
+    papers: [4, 5, 6],
   },
   {
     title: 'Plant disease recognition',
