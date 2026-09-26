@@ -1,44 +1,51 @@
-import Reveal from './Reveal'
-
-const RESEARCH_AREAS = [
-  'Deep Learning',
-  'Explainable AI (XAI)',
-  'Computer Vision',
-  'Medical Image Analysis',
-  'Federated Learning',
-]
+import { education, interests, person, skills } from '../data/content'
+import Section from './Section'
 
 export default function About() {
   return (
-    <section id="about" className="section-pad py-20 sm:py-28 border-t border-line dark:border-line-dark">
-      <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10">
-        <Reveal>
-          <p className="eyebrow">About</p>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-ink dark:text-ink-dark">
-            Background
-          </h2>
-        </Reveal>
-
-        <Reveal delay={80} className="max-w-2xl">
-          <p className="text-lg leading-relaxed text-slate dark:text-slate-dark">
-            Final-year Computer Science and Engineering student with research experience in Deep
-            Learning, Explainable AI (XAI), Medical Image Analysis, and Computer Vision. First-author
-            IEEE published researcher focused on developing trustworthy AI systems for healthcare
-            applications.
-          </p>
-
-          <div className="mt-6 flex flex-wrap gap-2">
-            {RESEARCH_AREAS.map((area) => (
-              <span
-                key={area}
-                className="rounded-full border border-line dark:border-line-dark px-3 py-1 text-xs font-mono text-slate dark:text-slate-dark hover:border-accent dark:hover:border-accent-light hover:text-accent dark:hover:text-accent-light transition-colors"
-              >
-                {area}
-              </span>
-            ))}
-          </div>
-        </Reveal>
+    <Section id="about" title="About">
+      <div className="about-lead reveal">
+        <p className="lead">{person.about}</p>
       </div>
-    </section>
+
+      <div className="about-facts reveal">
+        <div className="fact">
+          <h3 className="sub-title">Education</h3>
+          <p className="fact-inst">{education.institution}</p>
+          <p>{education.degree}</p>
+          <p className="meta">
+            {education.years}
+            <span className="meta-sep" aria-hidden="true" />
+            CGPA {education.cgpa}
+          </p>
+        </div>
+        <div className="fact">
+          <h3 className="sub-title">Research interests</h3>
+          <ul className="plain-list">
+            {interests.map((i) => (
+              <li key={i}>{i}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="skills reveal">
+        <h3 className="sub-title">Technical skills</h3>
+        <dl className="taxonomy">
+          {skills.map((g) => (
+            <div key={g.group} className="taxonomy-row">
+              <dt>{g.group}</dt>
+              <dd>
+                <ul>
+                  {g.items.map((s) => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </Section>
   )
 }

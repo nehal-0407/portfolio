@@ -2,15 +2,49 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Neyamul Islam — AI/ML Researcher</title>
-    <meta name="description" content="Neyamul Islam — AI/ML Researcher specializing in explainable deep learning for medical imaging and diagnostics." />
+    <title>Neyamul Islam — AI Researcher &amp; Deep Learning Engineer</title>
+    <meta
+      name="description"
+      content="Neyamul Islam, AI researcher and deep learning engineer. Research in deep learning, explainable AI, medical imaging, computer vision, and federated learning."
+    />
+    <meta name="author" content="Neyamul Islam" />
+    <link rel="canonical" href="https://neyamul-islam.vercel.app/" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="Neyamul Islam — AI Researcher & Deep Learning Engineer" />
+    <meta
+      property="og:description"
+      content="Research in deep learning, explainable AI, medical imaging, computer vision, and federated learning."
+    />
+    <meta property="og:url" content="https://neyamul-islam.vercel.app/" />
+    <meta property="og:image" content="https://neyamul-islam.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#F4F0E6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1D1B17" media="(prefers-color-scheme: dark)" />
+
+    <!-- Set the theme before first paint so dark-mode visitors never see a light flash. -->
+    <script>
+      (function () {
+        var t = null
+        try { t = localStorage.getItem('theme') } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        document.documentElement.dataset.theme = t
+      })()
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap"
       rel="stylesheet"
     />
   </head>

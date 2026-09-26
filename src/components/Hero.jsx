@@ -1,101 +1,94 @@
-import { useState } from 'react'
+import { education, links, person, publications } from '../data/content'
+import ExternalLink from './ExternalLink'
+import HeroVisual from './HeroVisual'
 
-function ProfilePhoto() {
-  const [errored, setErrored] = useState(false)
-
-  return (
-    <div className="animate-fadeUp [animation-delay:120ms] shrink-0">
-      <div className="h-44 w-44 sm:h-52 sm:w-52 rounded-2xl border border-line dark:border-line-dark bg-surface dark:bg-surface-dark overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
-        {!errored ? (
-          <img
-            src="/profile.jpg"
-            alt="Neyamul Islam"
-            className="h-full w-full object-cover"
-            onError={() => setErrored(true)}
-          />
-        ) : (
-          <div className="h-full w-full grid place-items-center bg-surface-alt dark:bg-surface-dark-alt">
-            <span className="font-display text-4xl font-semibold text-slate dark:text-slate-dark">
-              NI
-            </span>
-          </div>
-        )}
-      </div>
-    </div>
-  )
+// Counts are derived from the publication list, so they cannot drift from it.
+function paperTally() {
+  const count = (s) => publications.filter((p) => p.status === s).length
+  return [
+    { n: count('published'), label: 'published' },
+    { n: count('accepted'), label: 'accepted' },
+  ].filter((t) => t.n > 0)
 }
 
 export default function Hero() {
-  const scrollToContact = (e) => {
-    e.preventDefault()
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-
   return (
-    <section id="top" className="section-pad pt-36 pb-20 sm:pt-44 sm:pb-28">
-      <div className="mx-auto max-w-6xl flex flex-col-reverse sm:flex-row sm:items-start sm:justify-between gap-10">
-        <div className="flex-1 min-w-0">
-          <p className="eyebrow mb-6 animate-fadeUp">Final-Year CSE Student — AI / ML Research</p>
-
-          <h1 className="font-display font-semibold text-ink dark:text-ink-dark text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-7xl tracking-tight animate-fadeUp [animation-delay:80ms]">
-            Neyamul Islam
+    <section id="home" className="hero" aria-labelledby="hero-title">
+      <div className="container hero-grid">
+        <div className="hero-text">
+          <img
+            className="hero-portrait load-1"
+            src="/profile.webp"
+            alt="Portrait of Neyamul Islam"
+            width="720"
+            height="956"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <p className="eyebrow load-1">{person.eyebrow}</p>
+          <h1 id="hero-title" className="hero-title load-2">
+            {person.name}
           </h1>
-
-          <p className="mt-4 font-display text-xl sm:text-2xl text-accent dark:text-accent-light animate-fadeUp [animation-delay:140ms]">
-            AI Researcher | Deep Learning Engineer
+          <p className="hero-role load-3">{person.role}</p>
+          <p className="hero-affil load-3">
+            <span className="hero-affil-inst">{education.institution}</span>
+            <span className="meta-sep" aria-hidden="true" />
+            <span>{education.degree}</span>
           </p>
+          <p className="hero-intro load-3">{person.intro}</p>
 
-          <p className="mt-6 max-w-2xl text-base sm:text-lg text-slate dark:text-slate-dark leading-relaxed animate-fadeUp [animation-delay:200ms]">
-            Medical Image Analysis
-            <span className="px-2 text-line dark:text-line-dark">•</span>
-            Explainable AI
-            <span className="px-2 text-line dark:text-line-dark">•</span>
-            Computer Vision
-            <span className="px-2 text-line dark:text-line-dark">•</span>
-            Federated Learning
-          </p>
-
-          <div className="mt-10 flex flex-wrap items-center gap-4 animate-fadeUp [animation-delay:260ms]">
-            <a
-              href="/resume.pdf"
-              download="Neyamul-Islam-CV.pdf"
-              className="inline-flex items-center gap-2 rounded-md bg-ink dark:bg-ink-dark px-5 py-2.5 text-sm font-medium text-bg dark:text-bg-dark hover:bg-accent dark:hover:bg-accent-light transition-colors"
-            >
+          <div className="hero-actions load-4">
+            <ExternalLink href={links.cv} className="btn btn-primary">
+              View CV
+            </ExternalLink>
+            <a href={links.cv} download={links.cvDownloadName} className="btn btn-secondary">
               Download CV
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 4v12m0 0l-4-4m4 4l4-4M5 20h14" />
-              </svg>
-            </a>
-            <a
-              href="https://github.com/nehal-0407"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-line dark:border-line-dark px-5 py-2.5 text-sm font-medium text-ink dark:text-ink-dark hover:border-accent dark:hover:border-accent-light hover:text-accent dark:hover:text-accent-light transition-colors"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/neyamul-islam-45b577404"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-line dark:border-line-dark px-5 py-2.5 text-sm font-medium text-ink dark:text-ink-dark hover:border-accent dark:hover:border-accent-light hover:text-accent dark:hover:text-accent-light transition-colors"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="#contact"
-              onClick={scrollToContact}
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-slate dark:text-slate-dark hover:text-ink dark:hover:text-ink-dark transition-colors"
-            >
-              Contact Me
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 4v16M5 13l7 7 7-7" />
-              </svg>
             </a>
           </div>
+
+          <ul className="hero-links load-4" aria-label="Profiles">
+            <li>
+              <ExternalLink href={links.scholar}>Google Scholar</ExternalLink>
+            </li>
+            <li>
+              <ExternalLink href={links.github}>GitHub</ExternalLink>
+            </li>
+            <li>
+              <ExternalLink href={links.linkedin}>LinkedIn</ExternalLink>
+            </li>
+          </ul>
         </div>
 
-        <ProfilePhoto />
+        <div className="hero-visual load-3">
+          <HeroVisual />
+        </div>
+      </div>
+
+      <div className="container">
+        <dl className="signals load-4">
+          <div>
+            <dt>Research areas</dt>
+            <dd>
+              <ul>
+                {person.signals.map((s) => (
+                  <li key={s}>{s}</li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+          <div>
+            <dt>Papers</dt>
+            <dd>
+              <ul>
+                {paperTally().map((t) => (
+                  <li key={t.label}>
+                    <span className="tally-n">{t.n}</span> {t.label}
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        </dl>
       </div>
     </section>
   )
